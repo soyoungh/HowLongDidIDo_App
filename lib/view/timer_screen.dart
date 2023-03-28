@@ -72,16 +72,19 @@ class _TimerScreenState extends State<TimerScreen> {
     String minuteStr = minutes.toString().padLeft(2, '0');
     String secondsStr = seconds.toString().padLeft(2, '0');
 
-    return Scaffold(
-      body: SafeArea(
-          child: Column(
+    return Container(
+      padding: const EdgeInsets.fromLTRB(0, 20, 0, 10),
+      decoration: const BoxDecoration(color: Colors.amber),
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          const Text("Today's total duration",
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
           Text(
             "$hoursStr:$minuteStr:$secondsStr",
             style: const TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 5),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -112,7 +115,7 @@ class _TimerScreenState extends State<TimerScreen> {
             ],
           )
         ],
-      )),
+      ),
     );
   }
 }
