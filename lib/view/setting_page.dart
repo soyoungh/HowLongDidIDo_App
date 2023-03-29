@@ -1,9 +1,35 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:howlongdidido_app/view/in-app-purchase.dart';
 
-class SettingPage extends StatelessWidget {
+class SettingPage extends StatefulWidget {
   const SettingPage({super.key});
+
+  @override
+  State<SettingPage> createState() => _SettingPageState();
+}
+
+class _SettingPageState extends State<SettingPage> {
+  BannerAd? bannerAd;
+  final String androidTestID = "ca-app-pub-3940256099942544/6300978111";
+  final String iOSTestID = "ca-app-pub-3940256099942544/2934735716";
+  final String androidAdUnitID = "ca-app-pub-5585665050991980/2313736714";
+  final String iOSAdUnitID = "";
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    bannerAd = BannerAd(
+        size: AdSize.banner,
+        adUnitId: Platform.isIOS ? iOSTestID : androidTestID,
+        listener: const BannerAdListener(),
+        request: const AdRequest())
+      ..load();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -108,6 +134,10 @@ class SettingPage extends StatelessWidget {
                 trailing: Icon(Icons.keyboard_arrow_right)),
           ),
         ],
+      ),
+      bottomNavigationBar: SizedBox(
+        height: 50,
+        child: bannerAd == null ? Container() : AdWidget(ad: bannerAd!),
       ),
     );
   }
