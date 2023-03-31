@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:howlongdidido_app/view/record_card.dart';
 
 class RecordListView extends StatelessWidget {
   const RecordListView({super.key});
@@ -30,35 +31,9 @@ class RecordListView extends StatelessWidget {
               child: ListView.builder(
                 itemCount: 7,
                 itemBuilder: ((context, index) {
-                  return Card(
-                    color: Colors.white,
-                    margin: const EdgeInsets.fromLTRB(10, 4, 10, 4),
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 7, 10, 7),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text(
-                                "3/21/2023, Tuesday",
-                                style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(
-                                height: 2,
-                              ),
-                              Text("User's quick notes...(optional)")
-                            ],
-                          ),
-                          const Text("00:00:00",
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold))
-                        ],
-                      ),
-                    ),
-                  );
+                  return RecordCard(onBodyTap: () {
+                    debugPrint("A card is tapped.");
+                  });
                 }),
               ),
             ),

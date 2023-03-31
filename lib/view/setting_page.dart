@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:howlongdidido_app/view/in-app-purchase.dart';
+import 'package:howlongdidido_app/view/in_app_purchase.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({super.key});
