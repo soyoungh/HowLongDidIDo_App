@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:howlongdidido_app/view/record_card.dart';
 
 class RecordListView extends StatelessWidget {

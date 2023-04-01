@@ -21,14 +21,14 @@ class _SettingPageState extends State<SettingPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
+    // Banner Ad Listener
     bannerAd = BannerAd(
         size: AdSize.banner,
         adUnitId: Platform.isIOS ? iOSTestID : androidTestID,
         listener: const BannerAdListener(),
         request: const AdRequest())
       ..load();
+    super.initState();
   }
 
   @override

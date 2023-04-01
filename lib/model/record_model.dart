@@ -1,10 +1,7 @@
 class RecordModel {
-  final String recordDate;
-  final String duration;
-  final String quickNotes;
+  String recordDate;
+  String duration;
+  String quickNotes;
 
-  RecordModel(
-      {required this.recordDate,
-      required this.duration,
-      required this.quickNotes});
+  RecordModel({this.recordDate = '', this.duration = '', this.quickNotes = ''});
 }

@@ -3,9 +3,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:howlongdidido_app/view/monthly_view.dart';
 import 'package:howlongdidido_app/view/setting_page.dart';
 import 'record_list_view.dart';
 import 'timer_screen.dart';
+
+import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -21,16 +24,18 @@ class _HomeScreenState extends State<HomeScreen> {
   final String androidAdUnitID = "ca-app-pub-5585665050991980/2313736714";
   final String iOSAdUnitID = "";
 
+  bool isMonthlyView = false;
+
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
+    // Banner Ad Listener
     bannerAd = BannerAd(
         size: AdSize.banner,
         adUnitId: Platform.isIOS ? iOSTestID : androidTestID,
         listener: const BannerAdListener(),
         request: const AdRequest())
       ..load();
+    super.initState();
   }
 
   @override
@@ -44,7 +49,14 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           actions: [
             IconButton(
-                onPressed: () {}, icon: const Icon(Icons.calendar_view_month)),
+                onPressed: () {
+                  setState(() {
+                    isMonthlyView = !isMonthlyView;
+                  });
+
+                  debugPrint(isMonthlyView.toString());
+                },
+                icon: const Icon(Icons.calendar_view_month)),
             MenuItemButton(
               child: const Icon(
                 Icons.settings,
@@ -56,9 +68,11 @@ class _HomeScreenState extends State<HomeScreen> {
             )
           ]),
       body: SafeArea(
-        child: Column(children: const [
-          TimerScreen(),
-          Expanded(child: RecordListView()),
+        child: Column(children: [
+          const TimerScreen(),
+          Expanded(
+              child:
+                  isMonthlyView ? const MonthlyView() : const RecordListView()),
         ]),
       ),
       bottomNavigationBar: SizedBox(
